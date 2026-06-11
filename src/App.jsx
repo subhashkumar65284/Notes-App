@@ -1,9 +1,9 @@
-import './App.css'
+import './App.css';
 import TemporaryDrawer from './components/Drawer'
 import AppNavbar from './components/Navbar'
 
 function App() {
-
+  const pages = ["Home", "Important","Archive","Bin"];
   return (
     <>
       <AppNavbar/>
