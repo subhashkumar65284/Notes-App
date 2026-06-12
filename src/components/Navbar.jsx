@@ -11,7 +11,7 @@ import TemporaryDrawer from "./Drawer";
 export default function AppNavbar() {
   
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{zIndex: 7, backgroundColor:"#044e52" , height:64}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>
@@ -20,7 +20,7 @@ export default function AppNavbar() {
             Hyper Notes
           </Typography>
             </Box>
-          <Box sx={{ flexGrow: 0, display : {sd :"block",md:"none"}}}>
+          <Box sx={{ flexGrow: 0, display : {xs :"block",md:"none"}}}>
             <TemporaryDrawer/>
           </Box>
         </Toolbar>
