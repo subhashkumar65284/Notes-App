@@ -6,11 +6,13 @@ function App() {
   const pages = ["Home", "Starred","Archive","Bin"];
   return (
     <>
-      <AppNavbar />
-      <TemporaryDrawer/>
+      <AppNavbar>
+        <TemporaryDrawer pages={pages}/>
+      </AppNavbar>
       <SideBar pages={pages}/>
     </>
   )
 }
 
-export default App
+export default App;
+ 
