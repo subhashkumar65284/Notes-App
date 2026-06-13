@@ -1,10 +1,45 @@
 @import "tailwindcss";
 
-html, body{
+html,
+body {
   height: 100%;
   width: 100%;
   background-color: rgb(231, 246, 229);
 }
 
+textarea {
+  border: none;
+  padding: 10px;
+  border-radius: 0px 0px 15px 15px;
+  background-color: rgb(152, 169, 149);
+}
 
+textarea:focus {
+  outline: none; /* default browser outline hata dega */
+}
+input:focus {
+  outline: none;
+}
+input {
+  border: none;
+  padding: 10px;
+  border-radius: 15px 15px 0px 0px;
+  background-color: rgb(152, 169, 149);
+}
+.notes-container::-webkit-scrollbar {
+  width: 8px;
+}
 
+.notes-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.notes-container::-webkit-scrollbar-thumb {
+  background: #39532f;
+  border-radius: 10px;
+}
+
+.notes-container::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}

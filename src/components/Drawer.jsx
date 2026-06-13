@@ -13,7 +13,6 @@ import MailIcon from "@mui/icons-material/Mail";
 import LabelImportantIcon from "@mui/icons-material/LabelImportant";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { v4 as uuid } from "uuid";
 import { NavLink } from "react-router-dom";
 
 function TemporaryDrawer() {
@@ -22,9 +21,13 @@ function TemporaryDrawer() {
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+  
+  const handleClick = (e) =>{
+    console.log(e.target.textContent)
+  }
 
   const DrawerList = (
-    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box sx={{ width: 250}} role="presentation" onClick={toggleDrawer(false)}>
       <List>
         {["Home", "Starred", "Archive", "Bin"].map((text) => {
           let icon;
@@ -33,7 +36,7 @@ function TemporaryDrawer() {
           else if (text === "Archive") icon = <ArchiveIcon />;
           else icon = <DeleteIcon />;
           return (
-            <ListItem key={text} disablePadding>
+            <ListItem key={text} onClick={handleClick} disablePadding>
               <ListItemButton
                 component={NavLink}
                 to={text === "Home" ? "/" : `/${text.toLowerCase()}`}
@@ -60,7 +63,7 @@ function TemporaryDrawer() {
         color="inherit"
         aria-label="menu"
         onClick={toggleDrawer(true)}
-        sx={{ mr: 2 }}
+        sx={{ mr: 2}}
       >
         <MenuIcon />
       </IconButton>

@@ -5,11 +5,12 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import logo from "../assets/logo.svg";
+import useMediaQuery from '@mui/material/useMediaQuery';
 import TemporaryDrawer from "./Drawer";
 
 
 export default function AppNavbar() {
-  
+  const isDesktop = useMediaQuery('(min-width:768px)');
   return (
     <AppBar position="static" sx={{zIndex: 7, backgroundColor:"#044e52" , height:64}}>
       <Container maxWidth="xl">
@@ -20,9 +21,12 @@ export default function AppNavbar() {
             Hyper Notes
           </Typography>
             </Box>
-          <Box sx={{ flexGrow: 0, display : {xs :"block",md:"none"}}}>
-            <TemporaryDrawer/>
-          </Box>
+          {/* show drawer button only on screens <= 767px */}
+          {!isDesktop && (
+            <Box sx={{ flexGrow: 0 }}>
+              <TemporaryDrawer />
+            </Box>
+          )}
         </Toolbar>
       </Container>
     </AppBar>
