@@ -14,7 +14,7 @@ function App() {
         <TemporaryDrawer pages={pages}/>
       </AppNavbar>
       <SideBar pages={pages}/>
-      <main className="p-7 w-full md:ml-64 md:w-[calc(100%-16rem)] h-[calc(100vh-64px)]">
+      <main className="p-7 pt-19 w-full md:ml-64 md:w-[calc(100%-16rem)] h-[calc(100vh-64px)]">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/archive" element={<Archive />} />

@@ -12,7 +12,7 @@ import TemporaryDrawer from "./Drawer";
 export default function AppNavbar() {
   const isDesktop = useMediaQuery('(min-width:768px)');
   return (
-    <AppBar position="static" sx={{zIndex: 7, backgroundColor:"#044e52" , height:64}}>
+    <AppBar position="static" sx={{zIndex: 7, backgroundColor:"#044e52" , height:64,position:"fixed"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}>

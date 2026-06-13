@@ -27,7 +27,7 @@ input {
   background-color: rgb(152, 169, 149);
 }
 .notes-container::-webkit-scrollbar {
-  width: 8px;
+  width: 4px;
 }
 
 .notes-container::-webkit-scrollbar-track {
