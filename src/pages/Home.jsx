@@ -6,7 +6,7 @@ import CardActionArea from "@mui/material/CardActionArea";
 import { useReducer } from "react";
 import {v4 as uuid} from "uuid"
 import notesReducer from "../reducers/notesReducer";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
@@ -42,9 +42,14 @@ const initialState = {
       type:"RESET"
     })
     }
+  }
+  const onDeleteClick = (idToDelete) => {
+    notesDispatch({
+      type:"DELETE",
+      payload:idToDelete
+    })
     console.log(notes)
   }
-  {/*very light green , tea green*/}
   return (
     <>
     <div className="main-area flex min-[900px]:flex-row max-[900px]:items-center flex-col w-full h-full justify-around">
@@ -60,14 +65,13 @@ const initialState = {
         <button onClick={onAddClick} className="w-full bg-emerald-700 mt-1 text-amber-50 p-1.5 rounded-2xl font-bold">Add</button>
       </div>
 
-      <div className="notes-container w-full min-[900px]:w-[40%] max-[900px]:justify-center max-[900px]:h-[60%] overflow-y-auto flex flex-wrap">
+      <div className="notes-container w-full min-[900px]:w-[40%] overflow-y-auto flex flex-wrap content-start gap-3">
           {notes.map((note,index) => (
   <Card
-    key={uuid()}
+    key={note.id}
     sx={{
-      margin: 2,
-      width: "280px",
-      height: "280px",
+      width: "100%",
+      height: "200px",
       borderRadius: "15px",
       backgroundColor:`${index%2===0?"#F0FFF4":"#CFECCF"}`
     }}
@@ -110,19 +114,20 @@ const initialState = {
             gap: 1,
           }}
         >
-          <FavoriteIcon
-            sx={{
-              cursor: "pointer",
-              "&:hover": { transform: "scale(1.1)" },
-            }}
-          />
-
           <StarBorderIcon
             sx={{
               cursor: "pointer",
               "&:hover": { transform: "scale(1.1)" },
             }}
           />
+          <DeleteIcon 
+            onClick={() => onDeleteClick(note.id)}
+            sx={{
+              cursor: "pointer",
+              "&:hover": { transform: "scale(1.1)" },
+            }}
+          />
+          
         </Box>
       </CardContent>
     </CardActionArea>

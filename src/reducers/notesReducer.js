@@ -10,6 +10,8 @@ const notesReducer = (state, { type, payload }) => {
         return {...state , desc:"",title:""};
     case "ADD":
         return {...state , notes:[...state.notes,{title:state.title,desc:state.desc,id:uuid()}]}
+    case "DELETE":
+        return {...state , notes: state.notes.filter(note => note.id !== payload)}
     default:
       return state;
   }
