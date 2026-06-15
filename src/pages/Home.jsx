@@ -5,23 +5,15 @@ import Typography from "@mui/material/Typography";
 import CardActionArea from "@mui/material/CardActionArea";
 import { useReducer } from "react";
 import {v4 as uuid} from "uuid"
-import notesReducer from "../reducers/notesReducer";
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import { useNotes } from "../contexts/notesContext";
 
 const Home = () => {
-const initialState = {
-  id:'',
-  title:'',
-  desc:'',
-  notes:[]
-}
-
-  const [{id,title,desc,notes},notesDispatch] = useReducer(notesReducer,initialState);
+  const {id,title,desc,notes,notesDispatch} = useNotes();
   
   const onTitleChange = (e) => {
-    console.log(e);
     notesDispatch({
       type:'TITLE',
       payload:e,
@@ -43,16 +35,22 @@ const initialState = {
     })
     }
   }
-  const onDeleteClick = (idToDelete) => {
+  const onDeleteClick = (id) => {
     notesDispatch({
       type:"DELETE",
-      payload:idToDelete
+      payload:id
     })
-    console.log(notes)
+  }
+  const onStarredClick = (id) => {
+      notesDispatch({
+        type:"STARRED",
+        payload:id
+      })
+      console.log(notes)
   }
   return (
     <>
-    <div className="main-area flex min-[900px]:flex-row max-[900px]:items-center flex-col w-full h-full justify-around">
+    <div className="main-area flex min-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-between flex-col w-full h-full justify-around">
         {/*Form section */}
         <div className="flex flex-col w-75 mb-4 border-none focus:outline-none">
         <input value={title} onChange={(e) => onTitleChange(e.target.value)} placeholder="Enter Title..." />
@@ -66,9 +64,9 @@ const initialState = {
       </div>
 
       <div className="notes-container w-full min-[900px]:w-[40%] overflow-y-auto flex flex-wrap content-start gap-3">
-          {notes.map((note,index) => (
+          {notes.map(({id,title,desc,starred},index) => (
   <Card
-    key={note.id}
+    key={id}
     sx={{
       width: "100%",
       height: "200px",
@@ -94,14 +92,14 @@ const initialState = {
         }}
       >
         <Typography variant="h5" component="div">
-          {note.title}
+          {title}
         </Typography>
 
         <Typography
           variant="body2"
           sx={{ color: "text.secondary", mt: 1 }}
         >
-          {note.desc}
+          {desc}
         </Typography>
 
         {/* Bottom Right Icons */}
@@ -114,14 +112,23 @@ const initialState = {
             gap: 1,
           }}
         >
-          <StarBorderIcon
+          {(starred!==true)?<StarBorderIcon
+          onClick={() => onStarredClick(id)}
             sx={{
+              color:"black",
               cursor: "pointer",
-              "&:hover": { transform: "scale(1.1)" },
+              "&:hover": {transform: "scale(1.1)" },
             }}
-          />
+          />:<StarIcon
+          onClick={() => onStarredClick(id)}
+            sx={{
+              color:"red",
+              cursor: "pointer",
+              "&:hover": {transform: "scale(1.1)" },
+            }}
+          />}
           <DeleteIcon 
-            onClick={() => onDeleteClick(note.id)}
+            onClick={() => onDeleteClick(id)}
             sx={{
               cursor: "pointer",
               "&:hover": { transform: "scale(1.1)" },

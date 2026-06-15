@@ -12,9 +12,6 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { NavLink } from "react-router-dom";
 
 const SideBar = ({ pages }) => {
-  const handleClick = (e) => {
-    console.log(e.target.textContent);
-  };
 
   return (
     <>
@@ -38,7 +35,7 @@ const SideBar = ({ pages }) => {
       >
         <List>
           {pages.map((text) => (
-            <ListItem key={text} disablePadding onClick={handleClick}>
+            <ListItem key={text} disablePadding >
               <ListItemButton
                 component={NavLink}
                 to={text === "Home" ? "/" : `/${text.toLowerCase()}`}
