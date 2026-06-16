@@ -27,7 +27,7 @@ const Starred = () => {
     return (
         <>
         <div className="w-full h-full flex flex-col justify-center p-4">
-            <h1 className="text-6xl text-emerald-800 font-bold mb-5 max-[767px]:mr-50  max-[767]:text-2xl">Starred</h1>
+            <h1 className="text-3xl text-emerald-800 font-bold mb-5 max-[767px]:mr-50">Starred</h1>
           <div className="notes-container w-full min-[900px]:w-[70%] h-[75vh] overflow-y-auto flex flex-wrap content-start gap-3">
             {notes.map(({id,starred,title,desc}, index) => (
              starred===true && <Card

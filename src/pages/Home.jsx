@@ -60,7 +60,7 @@ const Home = () => {
     <div className="main-area flex relative min-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-between flex-col w-full h-full justify-around">
         {/*Form section */}
         <div className="flex flex-col w-75 mb-4 border-none focus:outline-none ">
-         <h1 className="text-6xl text-emerald-800 font-bold mb-5 max-[767]:text-[20px]">Home </h1>
+         <h1 className="text-3xl text-emerald-800 font-bold mb-5">Home</h1>
         <input value={title} onChange={(e) => onTitleChange(e.target.value)} placeholder="Enter Title..." />
         <textarea
           value={desc}
