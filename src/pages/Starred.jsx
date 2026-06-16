@@ -7,11 +7,11 @@ import CardActionArea from "@mui/material/CardActionArea";
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import onStarredClick from "./Home"
-import onDeleteClick from "./Home"
+
 
 const Starred = () => {
     const {id,title,desc,notes,notesDispatch} = useNotes();
+
     const onDeleteClick = (id) => {
     notesDispatch({
       type:"DELETE",
@@ -27,7 +27,7 @@ const Starred = () => {
     return (
         <>
         <div className="w-full h-full flex flex-col justify-center p-4">
-            <div className="font-bold text-2xl mb-3"><h1>Starred Notes</h1></div>
+            <h1 className="text-6xl text-emerald-800 font-bold mb-5 max-[767px]:mr-50  max-[767]:text-2xl">Starred</h1>
           <div className="notes-container w-full min-[900px]:w-[70%] h-[75vh] overflow-y-auto flex flex-wrap content-start gap-3">
             {notes.map(({id,starred,title,desc}, index) => (
              starred===true && <Card

@@ -22,9 +22,6 @@ function TemporaryDrawer() {
     setOpen(newOpen);
   };
   
-  const handleClick = (e) =>{
-    console.log(e.target.textContent)
-  }
 
   const DrawerList = (
     <Box sx={{ width: 250}} role="presentation" onClick={toggleDrawer(false)}>
@@ -36,7 +33,7 @@ function TemporaryDrawer() {
           else if (text === "Archive") icon = <ArchiveIcon />;
           else icon = <DeleteIcon />;
           return (
-            <ListItem key={text} onClick={handleClick} disablePadding>
+            <ListItem key={text}  disablePadding>
               <ListItemButton
                 component={NavLink}
                 to={text === "Home" ? "/" : `/${text.toLowerCase()}`}

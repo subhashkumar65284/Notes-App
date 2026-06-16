@@ -8,6 +8,7 @@ import {v4 as uuid} from "uuid"
 import DeleteIcon from '@mui/icons-material/Delete';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
+import ArchiveIcon from "@mui/icons-material/Archive";
 import { useNotes } from "../contexts/notesContext";
 
 const Home = () => {
@@ -46,18 +47,25 @@ const Home = () => {
         type:"STARRED",
         payload:id
       })
-      console.log(notes)
   }
+  const onArchiveClick = (id) => {
+      notesDispatch({
+        type:"ARCHIVE",
+        payload:id
+      })
+  }
+
   return (
     <>
-    <div className="main-area flex min-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-between flex-col w-full h-full justify-around">
+    <div className="main-area flex relative min-[900px]:flex-row max-[900px]:items-center max-[900px]:justify-between flex-col w-full h-full justify-around">
         {/*Form section */}
-        <div className="flex flex-col w-75 mb-4 border-none focus:outline-none">
+        <div className="flex flex-col w-75 mb-4 border-none focus:outline-none ">
+         <h1 className="text-6xl text-emerald-800 font-bold mb-5 max-[767]:text-[20px]">Home </h1>
         <input value={title} onChange={(e) => onTitleChange(e.target.value)} placeholder="Enter Title..." />
         <textarea
           value={desc}
           onChange={(e) => onDescChange(e.target.value)}
-          className=" max-[900px]:h-35 h-60 resize-none rounded-lg border"
+          className=" max-[900px]:h-30 h-60 resize-none rounded-lg border"
           placeholder="Enter Note..."
         />
         <button onClick={onAddClick} className="w-full bg-emerald-700 mt-1 text-amber-50 p-1.5 rounded-2xl font-bold">Add</button>
@@ -101,6 +109,19 @@ const Home = () => {
         >
           {desc}
         </Typography>
+        {/* Bottom Left Icon */}
+        <Box
+          sx={{
+            position: "absolute",
+            bottom: 12,
+            left: 12,
+            display: "flex",
+            gap: 1,
+          }}
+        >
+          {<ArchiveIcon onClick={() => onArchiveClick(id)}/>}
+          
+        </Box>
 
         {/* Bottom Right Icons */}
         <Box
